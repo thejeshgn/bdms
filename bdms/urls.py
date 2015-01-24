@@ -16,7 +16,7 @@ urlpatterns += staticfiles_urlpatterns()
 urlpatterns += patterns('',(r'^pages/', include('django.contrib.flatpages.urls')),)
 urlpatterns += patterns('django.contrib.flatpages.views',)
 
-urlpatterns += patterns('',(r'^users/', include('password_reset.urls') ),)
+#urlpatterns += patterns('',(r'^users/', include('password_reset.urls') ),)
 
 
 
