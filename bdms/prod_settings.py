@@ -22,6 +22,5 @@ STATICFILES_DIRS = (
 
 
 
-
 BASE_URL='http://buzzdatabase.herokuapp.com/'
 
