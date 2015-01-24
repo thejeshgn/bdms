@@ -2,7 +2,7 @@ from fabric.api import *
 from functools import wraps
 import os, sys
 
-__all__ = ['deploy','run','collectstatic']
+__all__ = ['deploy','run','collectstatic','migrate']
 
 def patch_python_path(f):
     @wraps(f)       
@@ -20,6 +20,16 @@ def patch_python_path(f):
 
         return f(*args, **kwargs)
     return wrap
+
+
+@patch_python_path
+def migrate():
+    from tools.git import check_git_state, is_git_clean
+    from tools.database import needsdatabase, local_migrate, remote_migrate, remote_syncdb
+    from tools.apps import enumerate_apps
+    for app in enumerate_apps():
+        print str(app)
+        remote_migrate(app)
 
 @patch_python_path
 def deploy():
@@ -52,7 +62,8 @@ def deploy():
 
 
 
-        remote_migrate(app)
+        for app in enumerate_apps():
+            remote_migrate(app)
 
 
     __deploy()
