@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'django_markdown',
     'rest_framework',
+    'password_reset',
     'bdms'
 )
 

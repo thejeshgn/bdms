@@ -4,6 +4,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import *
 from django.contrib import admin
 
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -12,13 +13,12 @@ urlpatterns = patterns('',
     url('^markdown/', include( 'django_markdown.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()
-# urlpatterns = patterns('',
-#     (r'^pages/', include('django.contrib.flatpages.urls')),
-# )
+urlpatterns += patterns('',(r'^pages/', include('django.contrib.flatpages.urls')),)
+urlpatterns += patterns('django.contrib.flatpages.views',)
 
-urlpatterns += patterns('django.contrib.flatpages.views',
+urlpatterns += patterns('',(r'^users/', include('password_reset.urls') ),)
 
-)
+
 
 if settings.DEBUG:
     import debug_toolbar

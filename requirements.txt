@@ -35,3 +35,4 @@ psycopg2
 django_markdown
 djangorestframework
 django-filter
+django-password-reset
