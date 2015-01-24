@@ -107,7 +107,8 @@ class PartnerAdmin(BaseAdmin):
 class MonthlyStatusAdmin(BaseAdmin):
     model = MonthlyStatus
     list_display = ('id','trainee','training_date','feedback_collected_date','feedback_collected_by')
-    user_readonly = ['age','place','partner','mobilization_date','training_date','training_batch','literacy_level','business','contact_mobile','current_monthly_income','current_monthly_profit','current_monthly_savings','current_challenges']
+    user_readonly = ['trainee','feedback_collected_date','feedback_collected_by','post_training_income','post_training_profit','post_training_savings','difference_between_income_and_profit','are_you_maintaining_accounts','how_much_of_your_goals_have_you_reached','have_you_started_a_new_business','have_you_expanded_your_business','how_did_you_expanded_your_business','have_you_taken_a_new_loan','from_where_did_you_take_a_new_loan','interested_in_joining_buzz_plus','are_you_happier_than_before','do_you_feel_confident_to_solve_your_challenges']
+
     user_readonly_inlines = []
 
     def training_date(self,obj):
@@ -115,8 +116,9 @@ class MonthlyStatusAdmin(BaseAdmin):
 
 class TraineeAdmin(BaseAdmin):
     list_display = ('id','name','age','place','partner','mobilization_date','training_date')
+    user_readonly = ['name','age','place','partner','mobilization_date','training_date','training_batch','literacy_level','business','contact_mobile','current_monthly_income','current_monthly_profit','current_monthly_savings','current_challenges']
+
     list_filter = ('partner',)
-    user_readonly = ['trainee','feedback_collected_date','feedback_collected_by','post_training_income','post_training_profit','post_training_savings','difference_between_income_and_profit','are_you_maintaining_accounts','how_much_of_your_goals_have_you_reached','have_you_started_a_new_business','have_you_expanded_your_business','how_did_you_expanded_your_business','have_you_taken_a_new_loan','from_where_did_you_take_a_new_loan','interested_in_joining_buzz_plus','are_you_happier_than_before','do_you_feel_confident_to_solve_your_challenges']
     user_readonly_inlines = []
     model = Trainee
 
