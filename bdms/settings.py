@@ -122,7 +122,7 @@ DATETIME_INPUT_FORMATS=(
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
+STATIC_ROOT = ''
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, "bdms","static"),
     os.path.join(PROJECT_ROOT, "django_admin_bootstrapped","static"),
