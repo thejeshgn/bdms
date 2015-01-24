@@ -16,9 +16,9 @@ PROJECT_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, os.pardir))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '..','..',"app"))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '..','..',"lib"))
 
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

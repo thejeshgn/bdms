@@ -19,6 +19,12 @@ from .forms import *
 logger = logging.getLogger(__name__)
 HEADER_FORM_URLENCODED = {'content-type':'application/x-www-form-urlencoded'}
 
+def server_error(request):
+    return render_to_response('server_error.html',{'request':request}, context_instance = RequestContext(request))
+
+def path_not_found(request):
+    return render_to_response('path_not_found.html',{'request':request}, context_instance = RequestContext(request))
+
 
 def home(request):
     return render_to_response('home.html',{'request':request}, context_instance = RequestContext(request))
