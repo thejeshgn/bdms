@@ -123,7 +123,7 @@ DATETIME_INPUT_FORMATS=(
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, "quest","static"),
+    os.path.join(PROJECT_ROOT, "bdms","static"),
     )
 
 
