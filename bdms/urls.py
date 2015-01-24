@@ -8,7 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url('^$',home, name='home'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^bdms-admin/', include(admin.site.urls)),
     url('^markdown/', include( 'django_markdown.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()
