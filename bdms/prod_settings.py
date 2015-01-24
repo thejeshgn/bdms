@@ -15,7 +15,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = ''
+STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, "bdms","static"),
     os.path.join(PROJECT_ROOT, "django_admin_bootstrapped","static"),
