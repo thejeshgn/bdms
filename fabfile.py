@@ -52,8 +52,7 @@ def deploy():
 
 
 
-        for app in enumerate_apps():
-            remote_migrate(app)
+        remote_migrate(app)
 
 
     __deploy()
