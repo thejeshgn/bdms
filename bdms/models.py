@@ -69,8 +69,8 @@ class Trainee(BaseModel):
     age                         = models.IntegerField(default=20);
     place                       = models.ForeignKey(Place)
     partner                     = models.ForeignKey(Partner)
-    mobilization_date           = models.DateField(blank=True,null=True,auto_now_add=True,editable=True)
-    training_date               = models.DateField(blank=True,null=True,auto_now_add=True,editable=True)
+    mobilization_date           = models.DateField(blank=True,null=True,editable=True)
+    training_date               = models.DateField(blank=True,null=True,editable=True)
     training_batch              = models.ForeignKey(TrainingBatch)
     literacy_level              = models.CharField(max_length=20,null=True,choices=LITERACY_LEVEL_CHOICES,default='Illiterate')
     business                    = models.TextField(blank=True,null=True,editable=True)
@@ -88,7 +88,7 @@ class Trainee(BaseModel):
 class MonthlyStatus(BaseModel):
     # Update to GenericIPAddress in Django 1.4
     trainee                                         = models.ForeignKey(Trainee)
-    feedback_collected_date                         = models.DateField(auto_now_add=True,editable=True)
+    feedback_collected_date                         = models.DateField(editable=True)
     feedback_collected_by                           = models.ForeignKey(User)
     post_training_income                            = models.IntegerField(editable=True)
     post_training_profit                            = models.IntegerField(editable=True)
