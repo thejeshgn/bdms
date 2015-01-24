@@ -11,12 +11,13 @@ urlpatterns = patterns('',
     url('^$',home, name='home'),
     url(r'^bdms-admin/', include(admin.site.urls)),
     url('^markdown/', include( 'django_markdown.urls')),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': settings.DEBUG}),
 )
-urlpatterns += staticfiles_urlpatterns()
+#urlpatterns += staticfiles_urlpatterns()
 urlpatterns += patterns('',(r'^pages/', include('django.contrib.flatpages.urls')),)
 urlpatterns += patterns('django.contrib.flatpages.views',)
 
-#urlpatterns += patterns('',(r'^users/', include('password_reset.urls') ),)
+urlpatterns += patterns('',(r'^users/', include('password_reset.urls') ),)
 
 
 
