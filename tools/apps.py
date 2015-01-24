@@ -1,4 +1,4 @@
 import os
 
 def enumerate_apps():
-    return [ 'quest']
+    return [ 'django_extensions','social_auth','tracking','bdms']
