@@ -63,6 +63,7 @@
                     </button>
                     {% block branding %}{% endblock %}
                 </div>
+                {% block custom_top_menu %}{% endblock %}                
                 <div id="header-navbar-collapse" class="navbar-collapse collapse navbar-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
                     <ul class="nav navbar-nav">
                         {% if user.is_active and user.is_staff %}
