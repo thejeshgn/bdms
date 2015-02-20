@@ -107,7 +107,7 @@ class PartnerAdmin(BaseAdmin):
 
 class MonthlyStatusAdmin(BaseAdmin):
     model = MonthlyStatus
-    list_display = ('id','trainee','batch','call_status','feedback_collected_date','feedback_collected_by')
+    list_display = ('id','trainee_details','batch','call_status','feedback_collected_date','feedback_collected_by')
     user_readonly = ['trainee','feedback_collected_date','feedback_collected_by','post_training_income','post_training_profit','post_training_savings','difference_between_income_and_profit','are_you_maintaining_accounts','how_much_of_your_goals_have_you_reached','have_you_started_a_new_business','have_you_expanded_your_business','how_did_you_expanded_your_business','have_you_taken_a_new_loan','from_where_did_you_take_a_new_loan','interested_in_joining_buzz_plus','are_you_happier_than_before','do_you_feel_confident_to_solve_your_challenges']
     search_fields = ('trainee__name','trainee__place__name', 'feedback_collected_date', )
     list_filter = ('feedback_collected_by',)
@@ -116,11 +116,14 @@ class MonthlyStatusAdmin(BaseAdmin):
     def batch(self,obj):
         return obj.trainee.training_batch.name
 
+    def trainee_details(self,obj):
+        return "<a href='/bdms-admin/bdms/trainee/"+str(obj.trainee.id)+"/'>"+str(obj.trainee)+"</a>"
+    trainee_details.allow_tags = True
+
 
 class MonthlyStatusInlineAdmin(admin.StackedInline):
     model = MonthlyStatus
     list_display = ('id','trainee','training_date','feedback_collected_date','feedback_collected_by')
-
     user_readonly = []
     fk_name = 'trainee'
     user_readonly_inlines = []
@@ -131,7 +134,7 @@ class MonthlyStatusInlineAdmin(admin.StackedInline):
 
 
 class TraineeAdmin(BaseAdmin):
-    list_display = ('id','name','age')
+    list_display = ('id','name','contact_mobile','no_calls_made')
     user_readonly = ['name','age',]
     search_fields = ('name',)
 
@@ -140,6 +143,10 @@ class TraineeAdmin(BaseAdmin):
     #user_readonly_inlines = (MonthlyStatusInlineAdmin,)
     user_readonly_inlines = []
     model = Trainee
+    def no_calls_made(self,obj):
+        return "<a href='/bdms-admin/bdms/monthlystatus/?'>"+str(MonthlyStatus.objects.filter(trainee=obj).count())+"</a>"
+    no_calls_made.allow_tags = True
+
 
 admin.site.register(State, StateAdmin)
 admin.site.register(District, DistrictAdmin)
