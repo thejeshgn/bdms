@@ -7,8 +7,9 @@ def can_add(user):
     return ( user.is_superuser or "Founder" in groups or  "Manager" in groups or "Coordinator" in groups or "Trainer" in groups)
 
 def can_change(user):
-    groups = [x.name for x in user.groups.all() ]
-    return ( user.is_superuser or "Founder" in groups or "Manager" in groups or "Coordinator" in groups or "Trainer" in groups)
+    #groups = [x.name for x in user.groups.all() ]
+    #return ( user.is_superuser or "Founder" in groups or "Manager" in groups or "Coordinator" in groups or "Trainer" in groups)
+    return True
 
 def can_delete(user):
     groups = [x.name for x in user.groups.all() ]
@@ -106,14 +107,14 @@ class PartnerAdmin(BaseAdmin):
 
 class MonthlyStatusAdmin(BaseAdmin):
     model = MonthlyStatus
-    list_display = ('id','trainee','training_date','feedback_collected_date','feedback_collected_by')
+    list_display = ('id','trainee','batch','call_status','feedback_collected_date','feedback_collected_by')
     user_readonly = ['trainee','feedback_collected_date','feedback_collected_by','post_training_income','post_training_profit','post_training_savings','difference_between_income_and_profit','are_you_maintaining_accounts','how_much_of_your_goals_have_you_reached','have_you_started_a_new_business','have_you_expanded_your_business','how_did_you_expanded_your_business','have_you_taken_a_new_loan','from_where_did_you_take_a_new_loan','interested_in_joining_buzz_plus','are_you_happier_than_before','do_you_feel_confident_to_solve_your_challenges']
     search_fields = ('trainee__name','trainee__place__name', 'feedback_collected_date', )
     list_filter = ('feedback_collected_by',)
     user_readonly_inlines = []
 
-    def training_date(self,obj):
-        return obj.trainee.training_date
+    def batch(self,obj):
+        return obj.trainee.training_batch.name
 
 
 class MonthlyStatusInlineAdmin(admin.StackedInline):
@@ -126,16 +127,16 @@ class MonthlyStatusInlineAdmin(admin.StackedInline):
     extra = 0
  
     def training_date(self,obj):
-        return obj.trainee.training_date
+        return obj.training_batch.training_date
 
 
 class TraineeAdmin(BaseAdmin):
-    list_display = ('id','name','age','place','partner','mobilization_date','training_date')
-    user_readonly = ['name','age','place','partner','mobilization_date','training_date','training_batch','literacy_level','business','contact_mobile','current_monthly_income','current_monthly_profit','current_monthly_savings','current_challenges']
-    search_fields = ('name','place__name', 'mobilization_date', 'training_date')
+    list_display = ('id','name','age')
+    user_readonly = ['name','age',]
+    search_fields = ('name',)
 
     #inlines = (MonthlyStatusInlineAdmin, )
-    list_filter = ('partner','training_batch')
+    list_filter = ()
     #user_readonly_inlines = (MonthlyStatusInlineAdmin,)
     user_readonly_inlines = []
     model = Trainee
